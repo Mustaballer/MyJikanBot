@@ -1,0 +1,6 @@
+eclipse.preferences.version=1
+encoding//src/me/MyJikanBot/Bot.java=UTF-8
+encoding//src/me/MyJikanBot/Command.java=UTF-8
+encoding//src/me/MyJikanBot/Commands/Clear.java=UTF-8
+encoding//src/me/MyJikanBot/Events/GuildMessageReactionAdd.java=UTF-8
+encoding//src/me/MyJikanBot/Events/GuildMessageReceived.java=UTF-8
