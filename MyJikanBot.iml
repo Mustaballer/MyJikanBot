@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="EclipseModuleManager">
+    <libelement value="file://C:/Users/Admin/Downloads/JDA-4.1.1_108-javadoc.jar" />
+    <libelement value="file://C:/Users/Admin/Downloads/JDA-4.1.1_108-withDependencies.jar" />
+    <src_description expected_position="1">
+      <src_folder value="file://$MODULE_DIR$/src" expected_position="1" />
+    </src_description>
+  </component>
+</module>
