@@ -46,8 +46,8 @@ String[] args = event.getMessage().getContentRaw().split("\\s+");
 						// Messages too old
 						EmbedBuilder error = new EmbedBuilder();
 						error.setColor(0xff3923);
-						error.setTitle("🔴 Selected messages are older than 2 weeks");
-						error.setDescription("Messages older than 2 weeks cannot be deleted.");
+						error.setTitle("🔴 Selected messages must be greater than 1");
+						error.setDescription("Discord works so that you must delete more than one message");
 						event.getChannel().sendMessage(error.build()).queue();
 					}
 				}

@@ -5,7 +5,7 @@ import net.dv8tion.jda.api.hooks.ListenerAdapter;
 
 public class GuildMessageReactionAdd extends ListenerAdapter {
 	public void onGuildMessageReactionAdd(GuildMessageReactionAddEvent event) {
-		if (event.getReactionEmote().getName().equals("‚?å") && 
+		if (event.getReactionEmote().getName().equals("‚ùå") && 
 				!event.getMember().getUser().equals(event.getJDA().getSelfUser())) {
 			
 			if (event.getMember().getUser().equals(event.getChannel().retrieveMessageById(event.getMessageId()).complete().getAuthor())) {

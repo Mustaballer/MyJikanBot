@@ -10,7 +10,7 @@ public class Command extends ListenerAdapter {
 		
 		if (args[0].equalsIgnoreCase(Bot.prefix + "info")) {
 			EmbedBuilder info = new EmbedBuilder();
-			info.setTitle("📺 MyJikanBot");
+			info.setTitle("📺  MyJikanBot");
 			info.setDescription("This Bot was designed to test out Jikan's API");
 			info.setColor(0xf45642);
 			info.setFooter("Created by Mustafa Abdulrahman", event.getMember().getUser().getAvatarUrl());
