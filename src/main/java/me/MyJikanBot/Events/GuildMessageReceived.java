@@ -36,7 +36,7 @@ public class GuildMessageReceived extends ListenerAdapter {
 				.url("https://jikan1.p.rapidapi.com/anime/" + id + "/pictures")
 				.get()
 				.addHeader("x-rapidapi-host", "jikan1.p.rapidapi.com")
-				.addHeader("x-rapidapi-key", "96a73e158bmshe52e62c5001ba3fp197597jsnaf4ed14bff71")
+				.addHeader("x-rapidapi-key", "INSERT RAPID_API KEY")
 				.build();		
 		try {
 			Response response = client.newCall(request).execute();
