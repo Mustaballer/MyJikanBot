@@ -4,6 +4,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Random;
 
 import javax.imageio.ImageIO;
 
@@ -23,17 +24,24 @@ public class GuildMessageReceived extends ListenerAdapter {
 	
 	public static String take(String d) throws IOException {
 		OkHttpClient client = new OkHttpClient();
-
+		// put code here for random id
+		
+		Random r = new Random();
+		// random number between 10000 and 1
+		int random = r.nextInt((50000 - 1) + 1) + 1;
+		String id = Integer.toString(random);
+		System.out.println(id);
+		
 		Request request = new Request.Builder()
-				.url("https://jikan1.p.rapidapi.com/anime/600/pictures")
+				.url("https://jikan1.p.rapidapi.com/anime/" + id + "/pictures")
 				.get()
 				.addHeader("x-rapidapi-host", "jikan1.p.rapidapi.com")
-				.addHeader("x-rapidapi-key", "INSERT RAPID API KEY")
-				.build();
-		
-		
+				.addHeader("x-rapidapi-key", "96a73e158bmshe52e62c5001ba3fp197597jsnaf4ed14bff71")
+				.build();		
+		try {
 			Response response = client.newCall(request).execute();
 			String dude = response.body().string();
+			System.out.println(dude);
 			
 			// Initial object to go to pictures
 			JSONObject obj = new JSONObject(dude);
@@ -46,12 +54,16 @@ public class GuildMessageReceived extends ListenerAdapter {
 	        String index = myResponse.get(0).toString();
 	        System.out.println(index);
 	        
-	     // Final url of large image
+	        // Final url of large image
 	     	JSONObject size = new JSONObject(index);
 	     	String link = size.get("large").toString();
 	     	System.out.println(link);
 	     	return link;
-
+		}
+		catch(Exception e) {
+			System.out.println(e);
+			return null;
+		}
 	}
 	
 	public void onGuildMessageReceived(GuildMessageReceivedEvent event) {
@@ -63,6 +75,7 @@ public class GuildMessageReceived extends ListenerAdapter {
 					// Get channel name and send in current channel
 					String channelName = event.getChannel().getName();
 					event.getChannel().sendMessage(channelName).queue();
+					event.getChannel().sendTyping().queue();
 					
 					// Upload and send an image to current channel
 					try {
@@ -84,24 +97,30 @@ public class GuildMessageReceived extends ListenerAdapter {
 					}
 				}
 		
-		if (args[0].equalsIgnoreCase("!anime")) {
+		if (args[0].equalsIgnoreCase("!ranime")) {
+			Boolean missing = false;
 			
 			String test = "Replace some characters!";
 	        try {
 				test = take(test);
+				if (test == null) {
+					missing = true;
+				}
+				
 			} catch (IOException e2) {
 				// TODO Auto-generated catch block
 				e2.printStackTrace();
 			}
-	        
+	        if (missing == false && test != null) {
 			// Get channel name and send in current channel
 			String channelName = event.getChannel().getName();
 			event.getChannel().sendMessage(channelName).queue();
+			event.getChannel().sendTyping().queue();
 			// Upload and send an image to current channel
 			try {
 				try {
-					// take a delay
-					Thread.sleep(3000);
+					// take a 4 second delay
+					Thread.sleep(4000);
 				} catch (InterruptedException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -110,13 +129,22 @@ public class GuildMessageReceived extends ListenerAdapter {
 				pic.setColor(0x0000ff);
 				pic.setTitle("🐱‍👤Check out this anime pic");
 				pic.setImage(test);
-				pic.setDescription("I will add a randomizer or something soon");
+				pic.setDescription("This randomizes through the MAL database");
 				event.getChannel().sendMessage(pic.build()).queue();
 				pic.clear();
 			}
 			catch (Exception e) {
 				event.getChannel().sendMessage("Error fetching image.").queue();
 			}
+	      }
+	        else {
+	        	EmbedBuilder error = new EmbedBuilder();
+				error.setColor(0xff3923);
+				error.setTitle("🔴 There appears to be no picture for this random anime");
+				error.setDescription("Anime id contains no image in the MAL database");
+				event.getChannel().sendMessage(error.build()).queue();
+	        }
+	       
 		}
 		/* Part 5- Mute Command--> find replacement for add role and removing roles, use online documentation
 		 *try this link 
