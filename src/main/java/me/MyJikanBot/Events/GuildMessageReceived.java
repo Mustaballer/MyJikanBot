@@ -28,7 +28,7 @@ public class GuildMessageReceived extends ListenerAdapter {
 		
 		Random r = new Random();
 		// random number between 10000 and 1
-		int random = r.nextInt((50000 - 1) + 1) + 1;
+		int random = r.nextInt((40000 - 1) + 1) + 1;
 		String id = Integer.toString(random);
 		System.out.println(id);
 		
@@ -36,7 +36,7 @@ public class GuildMessageReceived extends ListenerAdapter {
 				.url("https://jikan1.p.rapidapi.com/anime/" + id + "/pictures")
 				.get()
 				.addHeader("x-rapidapi-host", "jikan1.p.rapidapi.com")
-				.addHeader("x-rapidapi-key", "INSERT RAPID_API KEY")
+				.addHeader("x-rapidapi-key", "RAPID API KEY")
 				.build();		
 		try {
 			Response response = client.newCall(request).execute();
@@ -68,7 +68,6 @@ public class GuildMessageReceived extends ListenerAdapter {
 	
 	public void onGuildMessageReceived(GuildMessageReceivedEvent event) {
 		String[] args = event.getMessage().getContentRaw().split("\\s+");
-		event.getMessage().addReaction("❌").queue();
 		
 		if (args[0].equalsIgnoreCase("!boys")) {
 					
@@ -89,6 +88,8 @@ public class GuildMessageReceived extends ListenerAdapter {
 						hidden.setColor(0xff1923);
 						hidden.setTitle("🔴 Welcome to the real club: 20th Century Boys");
 						hidden.setDescription("There are only a handful of you out there");
+						event.getChannel().sendTyping().queue();
+						Thread.sleep(1000);
 						event.getChannel().sendMessage(hidden.build()).queue();
 						hidden.clear();
 					}
@@ -126,7 +127,7 @@ public class GuildMessageReceived extends ListenerAdapter {
 					e1.printStackTrace();
 				}
 				EmbedBuilder pic = new EmbedBuilder();
-				pic.setColor(0x0000ff);
+				pic.setColor(0xADD8E6);
 				pic.setTitle("🐱‍👤Check out this anime pic");
 				pic.setImage(test);
 				pic.setDescription("This randomizes through the MAL database");
