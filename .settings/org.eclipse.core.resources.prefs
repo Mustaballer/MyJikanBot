@@ -3,6 +3,7 @@ encoding//src/main/java/me/MyJikanBot/Command.java=UTF-8
 encoding//src/main/java/me/MyJikanBot/Commands/Clear.java=UTF-8
 encoding//src/main/java/me/MyJikanBot/Commands/RandomAnime.java=UTF-8
 encoding//src/main/java/me/MyJikanBot/Commands/RandomManga.java=UTF-8
+encoding//src/main/java/me/MyJikanBot/Commands/SearchAnime.java=UTF-8
 encoding//src/main/java/me/MyJikanBot/Events/GuildMessageReactionAdd.java=UTF-8
 encoding//src/main/java/me/MyJikanBot/Events/GuildMessageReceived.java=UTF-8
 encoding//src/me/MyJikanBot/Bot.java=UTF-8

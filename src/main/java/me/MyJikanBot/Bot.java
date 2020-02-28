@@ -6,6 +6,7 @@ import javax.security.auth.login.LoginException;
 import me.MyJikanBot.Commands.Clear;
 import me.MyJikanBot.Commands.RandomAnime;
 import me.MyJikanBot.Commands.RandomManga;
+import me.MyJikanBot.Commands.SearchAnime;
 import me.MyJikanBot.Events.GuildMemberJoin;
 import me.MyJikanBot.Events.GuildMemberLeave;
 import me.MyJikanBot.Events.GuildMessageReactionAdd;
@@ -30,6 +31,7 @@ public class Bot {
 		jda.addEventListener(new Command());
 		jda.addEventListener(new RandomAnime());
 		jda.addEventListener(new RandomManga());
+		jda.addEventListener(new SearchAnime());
 		jda.addEventListener(new Clear());
 		jda.addEventListener(new GuildMemberJoin());
 		jda.addEventListener(new GuildMemberLeave());
