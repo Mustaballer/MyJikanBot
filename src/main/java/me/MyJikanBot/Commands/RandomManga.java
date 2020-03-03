@@ -35,7 +35,7 @@ public class RandomManga extends ListenerAdapter {
 
 		Request request = new Request.Builder().url("https://jikan1.p.rapidapi.com/genre/manga/" + id + "/1").get()
 				.addHeader("x-rapidapi-host", "jikan1.p.rapidapi.com")
-				.addHeader("x-rapidapi-key", "RAPID API KEY").build();
+				.addHeader("x-rapidapi-key", "96a73e158bmshe52e62c5001ba3fp197597jsnaf4ed14bff71").build();
 		try {
 			Response response = client.newCall(request).execute();
 			String data = response.body().string();
@@ -104,12 +104,9 @@ public class RandomManga extends ListenerAdapter {
 			}
 			// checks if command can be done
 			if (missing == false && title != null && imageUrl != null && synopsis != null) {
-				// Get channel name and send in current channel
-				String channelName = event.getChannel().getName();
-				event.getChannel().sendMessage(channelName).queue();
-				event.getChannel().sendTyping().queue();
 
 				try {
+					event.getChannel().sendTyping().queue();
 					try {
 						// take a 4 second delay
 						Thread.sleep(4000);
@@ -121,13 +118,13 @@ public class RandomManga extends ListenerAdapter {
 					EmbedBuilder pic = new EmbedBuilder();
 					pic.setColor(0xa6a6ff);
 					pic.setThumbnail("https://pbs.twimg.com/profile_images/1190380284295950339/Py6XnxvH_400x400.jpg");
-					pic.setTitle("🟦 "+title);
+					pic.setTitle("🟦 " + title);
 					pic.setImage(imageUrl);
 					pic.addField("Synopsis", synopsis, true);
 					event.getChannel().sendMessage(pic.build()).queue();
 					pic.clear();
 				} catch (Exception e) {
-					event.getChannel().sendMessage("Error fetching data.").queue();
+					e.printStackTrace();
 				}
 			} else {
 				EmbedBuilder error = new EmbedBuilder();

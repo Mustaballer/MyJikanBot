@@ -34,7 +34,7 @@ public class GuildMessageReceived extends ListenerAdapter {
 
 		Request request = new Request.Builder().url("https://jikan1.p.rapidapi.com/anime/" + id + "/pictures").get()
 				.addHeader("x-rapidapi-host", "jikan1.p.rapidapi.com")
-				.addHeader("x-rapidapi-key", "RAPID API KEY").build();
+				.addHeader("x-rapidapi-key", "96a73e158bmshe52e62c5001ba3fp197597jsnaf4ed14bff71").build();
 		try {
 			Response response = client.newCall(request).execute();
 			String dude = response.body().string();
@@ -84,11 +84,14 @@ public class GuildMessageReceived extends ListenerAdapter {
 				EmbedBuilder hidden = new EmbedBuilder();
 				hidden.setColor(0xff1923);
 				hidden.setTitle("💥Welcome to the real club: 20th Century Boys");
-				hidden.setDescription("This is a hidden message");
+				hidden.setDescription("You have now been appointed as a Manga reader. Rejoice!");
 				event.getChannel().sendTyping().queue();
 				Thread.sleep(1000);
 				event.getChannel().sendMessage(hidden.build()).queue();
 				hidden.clear();
+				// Add role
+				event.getGuild().modifyMemberRoles(event.getMember(), event.getGuild().getRolesByName("Manga-readers", true))
+						.complete();
 			} catch (Exception e) {
 				event.getChannel().sendMessage("Error fetching image.").queue();
 			}
@@ -109,12 +112,9 @@ public class GuildMessageReceived extends ListenerAdapter {
 				e2.printStackTrace();
 			}
 			if (missing == false && test != null) {
-				// Get channel name and send in current channel
-				String channelName = event.getChannel().getName();
-				event.getChannel().sendMessage(channelName).queue();
-				event.getChannel().sendTyping().queue();
 				// Upload and send an image to current channel
 				try {
+					event.getChannel().sendTyping().queue();
 					try {
 						// take a 4 second delay
 						Thread.sleep(4000);
@@ -139,6 +139,7 @@ public class GuildMessageReceived extends ListenerAdapter {
 				error.setTitle("🔴 There appears to be no picture for this random anime");
 				error.setDescription("Anime id contains no image in the MAL database");
 				event.getChannel().sendMessage(error.build()).queue();
+				error.clear();
 			}
 
 		}

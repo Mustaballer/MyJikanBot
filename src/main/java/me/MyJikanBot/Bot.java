@@ -6,7 +6,9 @@ import me.MyJikanBot.Commands.Clear;
 import me.MyJikanBot.Commands.Kick;
 import me.MyJikanBot.Commands.RandomAnime;
 import me.MyJikanBot.Commands.RandomManga;
+import me.MyJikanBot.Commands.Schedule;
 import me.MyJikanBot.Commands.Search;
+import me.MyJikanBot.Commands.Season;
 import me.MyJikanBot.Commands.Top;
 import me.MyJikanBot.Events.GuildMemberJoin;
 import me.MyJikanBot.Events.GuildMemberLeave;
@@ -25,13 +27,15 @@ public class Bot {
 	// Main Method
 	public static void main(String[] args) throws LoginException {
 		jda = new JDABuilder(AccountType.BOT)
-				.setToken("DISCORD BOT TOKEN" + "").build();
+				.setToken("BOT TOKEN" + "").build();
 		jda.getPresence().setStatus(OnlineStatus.IDLE);
 		jda.getPresence().setActivity(Activity.watching("20th century boys"));
 
 		jda.addEventListener(new Command());
 		jda.addEventListener(new UserInfo());
 		jda.addEventListener(new Top());
+		jda.addEventListener(new Schedule());
+		jda.addEventListener(new Season());
 		jda.addEventListener(new RandomAnime());
 		jda.addEventListener(new RandomManga());
 		jda.addEventListener(new Search());

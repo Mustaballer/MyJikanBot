@@ -4,7 +4,6 @@ import java.util.List;
 
 import me.MyJikanBot.Bot;
 import net.dv8tion.jda.api.EmbedBuilder;
-import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.entities.Role;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
@@ -60,6 +59,7 @@ public class Clear extends ListenerAdapter {
 			error.setTitle("🔴 You do not hold permissions to use this command");
 			error.setDescription("Only the Admin can delete messages");
 			event.getChannel().sendMessage(error.build()).queue();
+			error.clear();
 		}
 
 	}

@@ -1,11 +1,6 @@
 package me.MyJikanBot;
 
-import java.awt.Color;
-
-import javax.xml.soap.MessageFactory;
-
 import net.dv8tion.jda.api.EmbedBuilder;
-import net.dv8tion.jda.api.entities.User;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 
@@ -15,13 +10,13 @@ public class Command extends ListenerAdapter {
 
 		if (args[0].equalsIgnoreCase(Bot.prefix + "info") || args[0].equalsIgnoreCase(Bot.prefix + "help")) {
 			// wait
+			event.getChannel().sendTyping().queue();
 			try {
 				Thread.sleep(1000);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
 			event.getAuthor().openPrivateChannel().queue(channel -> {
 				EmbedBuilder info = new EmbedBuilder();
 				info.setTitle("➿  MyJikanBot");
@@ -29,10 +24,12 @@ public class Command extends ListenerAdapter {
 				info.setThumbnail("https://webstockreview.net/images/information-clipart-1.png");
 				info.addField("!search {anime/manga} {title}", "query that retrieves information about an anime/manga",
 						false);
-				info.addField("!top {anime/manga} {subtype}", "command that retrieves ranked data",
+				info.addField("!top {anime/manga} {subtype}", "command that retrieves ranked data", false);
+				info.addField("`subtypes`",
+						"For Anime: airing, upcoming, tv, movie, ova, special. For Manga: manga, novels, oneshots, doujin, manhwa, manhua.                  Both: bypopularity, favorite.",
 						false);
-				info.addField("`subtypes`", "For Anime: airing, upcoming, tv, movie, ova, special. For Manga: manga, novels, oneshots, doujin, manhwa, manhua.                  Both: bypopularity, favorite.",
-						false);
+				info.addField("!schedule {day}", "command that retrieves anime schedule for the chosen day", false);
+				info.addField("!season {season} {year}", "command that retrieves anime season data", false);
 				info.addField("!random-anime", "command that returns a random anime", true);
 				info.addField("!random-manga", "command that returns a random manga", true);
 				info.addField("!rpic", "command that returns a random image", true);
@@ -43,10 +40,16 @@ public class Command extends ListenerAdapter {
 				info.setFooter("Used JDA, Gradle, Jikan REST API, Discord", event.getMember().getUser().getAvatarUrl());
 
 				event.getChannel().sendTyping().queue();
-			    channel.sendMessage(info.build()).queue();
-			    info.clear();
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				channel.sendMessage(info.build()).queue();
+				info.clear();
 			});
-			
+
 		}
 	}
 }
