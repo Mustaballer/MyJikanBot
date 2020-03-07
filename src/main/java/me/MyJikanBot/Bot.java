@@ -27,9 +27,9 @@ public class Bot {
 	// Main Method
 	public static void main(String[] args) throws LoginException {
 		jda = new JDABuilder(AccountType.BOT)
-				.setToken("BOT TOKEN" + "").build();
+				.setToken("INSERT BOT TOKEN" + "").build();
 		jda.getPresence().setStatus(OnlineStatus.IDLE);
-		jda.getPresence().setActivity(Activity.watching("20th century boys"));
+		jda.getPresence().setActivity(Activity.watching("Mob Psycho 100"));
 
 		jda.addEventListener(new Command());
 		jda.addEventListener(new UserInfo());

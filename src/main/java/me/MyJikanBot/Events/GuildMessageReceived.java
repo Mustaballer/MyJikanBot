@@ -84,7 +84,7 @@ public class GuildMessageReceived extends ListenerAdapter {
 				EmbedBuilder hidden = new EmbedBuilder();
 				hidden.setColor(0xff1923);
 				hidden.setTitle("💥Welcome to the real club: 20th Century Boys");
-				hidden.setDescription("You have now been appointed as a Manga reader. Rejoice!");
+				hidden.setDescription("You have now been appointed as a Manga reader. Rejoice! You can now use the Rythm bot in the audio-command channel.");
 				event.getChannel().sendTyping().queue();
 				Thread.sleep(1000);
 				event.getChannel().sendMessage(hidden.build()).queue();
@@ -155,22 +155,23 @@ public class GuildMessageReceived extends ListenerAdapter {
 		if (args[0].equalsIgnoreCase("!mute")) {
 			if (args.length == 2) {
 				Member member = event.getGuild().getMemberById(args[1].replace("<@", "").replace(">", ""));
-				Role role = event.getGuild().getRoleById("680951006158520349");
+				Role role = event.getGuild().getRoleById("679519729307877396");
 
 				// debugging purposes
 				event.getChannel().sendMessage("Muted" + args[1] + ".").queue();
 
-				if (!member.getRoles().contains(role)) {
+				if (member.getRoles().contains(role) == false) {
 					// Mute user
 					event.getChannel().sendMessage("Muted" + args[1] + ".").queue();
 
-					event.getGuild().modifyMemberRoles(member, role).complete();
-					// event.getGuild().getController().addRolesToMember(member, role).complete();
+					// Add role
+					event.getGuild().modifyMemberRoles(event.getMember(), event.getGuild().getRolesByName("Muted", true))
+							.complete();
 				} else {
 					// Unmute user
-					event.getGuild().modifyMemberRoles(member, role).complete();
-					// event.getGuild().getController().removeRolesFromMember(member,
-					// role).complete();
+					// remove role
+					event.getGuild().modifyMemberRoles(event.getMember(), event.getGuild().getPublicRole())
+							.complete();					
 
 				}
 			} else if (args.length == 3) {
@@ -178,8 +179,9 @@ public class GuildMessageReceived extends ListenerAdapter {
 				Role role = event.getGuild().getRoleById("679519729307877396");
 
 				event.getChannel().sendMessage("Muted" + args[1] + "for" + args[2] + " seconds.").queue();
-				event.getGuild().modifyMemberRoles(member, role).complete();
-				// event.getGuild().getController().addRolesToMember(member, role).complete();
+				// Add role
+				event.getGuild().modifyMemberRoles(event.getMember(), event.getGuild().getRolesByName("Muted", true))
+						.complete();
 
 				// Unmute after a few seconds
 				new java.util.Timer().schedule(new java.util.TimerTask() {
@@ -187,7 +189,8 @@ public class GuildMessageReceived extends ListenerAdapter {
 					public void run() {
 						// TODO Auto-generated method stub
 
-						event.getGuild().modifyMemberRoles(member, role).complete();
+						event.getGuild().modifyMemberRoles(event.getMember(), event.getGuild().getPublicRole())
+						.complete();
 						// event.getGuild().getController().removeRolesFromMember(member,
 						// role).complete();
 					}
