@@ -20,7 +20,7 @@ Run Gradle Bot.Main()
 * [JDA](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
 * [Gradle](https://maven.apache.org/) - Dependency Management
 * [Jikan REST API](https://maven.apache.org/) - Dependency Management
-* [Discord](https://rometools.github.io/rome/) - Used to generate RSS Feeds
+* [Discord](https://rometools.github.io/rome/) - Main Software for use
 
 ## Authors
 
