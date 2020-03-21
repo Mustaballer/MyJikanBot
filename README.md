@@ -1,8 +1,8 @@
 # MyJikanBot
 
-This Discord Bot uses the JDA wrapper to retrieve information from the Jikan API and take anime/manga information for users to find. The commands now include searching for their favorite anime or manga, finding a random manga or anime, fnding out the schedule for each day of the week, finding the top anime or manga(even more subtypes), and popular anime for a season.
+This Discord Bot uses the JDA wrapper to retrieve information from the Jikan API and take anime/manga information for users to find. The commands now include searching for their favorite anime or manga, finding a random manga or anime, finding out the schedule for each day of the week, finding the top anime or manga(see subtypes on discord), and popular anime for any given season.
 
-If you wish to join my Discord Server with the MyJikanBot then please contact me at this email:                         mus2003.abdul@gmail.com 
+If you wish to join my Discord Server with the MyJikanBot then please complete this form:                         https://forms.gle/i8JbaLmXjiyzj3fA8
 
 ![MyJikanBot Snap](https://snipboard.io/E0qmpn.jpg)
 
